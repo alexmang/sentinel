@@ -49,8 +49,14 @@ class ViewController: UIViewController {
         manager.stopAccelerometerUpdates()
         moving.text = "Not Moving!"
 
-        timer.invalidate()
-        timer2.invalidate()
+        
+        if timer != nil{
+            timer.invalidate()
+        }
+        if timer2 != nil{
+            timer2.invalidate()
+        }
+        
     }
     
 
