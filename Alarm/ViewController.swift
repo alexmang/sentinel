@@ -10,6 +10,8 @@ import UIKit
 import CoreMotion
 import AVFoundation
 import UserNotifications
+import MediaPlayer
+
 
 class ViewController: UIViewController {
 
@@ -23,12 +25,13 @@ class ViewController: UIViewController {
     var timer2: Timer!
     let manager = CMMotionManager()
     let systemSoundID: SystemSoundID = 1016
+    let volumeView = MPVolumeView()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
+        
     }
     
     
@@ -59,6 +62,8 @@ class ViewController: UIViewController {
                 moving.text = "Moving!!"
                 deactivated = false
                 
+                
+                
                 timer.invalidate()
                 timer2 = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.alarm), userInfo: nil, repeats: true)
             } else {
@@ -83,7 +88,12 @@ class ViewController: UIViewController {
 
     func alarm () {
         if !deactivated {
+//            if let view = volumeView.subviews.first as? UISlider
+//            {
+//                view.value = 0.7   // set b/w 0 t0 1.0
+//            }
             AudioServicesPlayAlertSound (systemSoundID)
+            
         }
     }
     
