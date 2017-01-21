@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Alarm" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
@@ -21,39 +23,91 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZrX-jc-USn">
-                                <rect key="frame" x="110" y="143" width="100" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Activate Alarm"/>
-                                <connections>
-                                    <action selector="activateAlarm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4W4-qj-rik"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4D-sb-15P">
-                                <rect key="frame" x="102" y="358" width="117" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Deactivate Alarm"/>
-                                <connections>
-                                    <action selector="deactivateAlarm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VID-Qu-cRk"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You're Not Moving" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfB-O1-f8E">
-                                <rect key="frame" x="-27" y="239" width="375" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="67Q-dp-q39">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ax1-SR-8AQ">
+                                <rect key="frame" x="52" y="30" width="216" height="41"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="risk level: LOW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFO-wC-XLq">
+                                        <rect key="frame" x="51.5" y="0.0" width="113" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="thefts attempted in this area" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06s-2X-Mx4">
+                                        <rect key="frame" x="0.0" y="20.5" width="216" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Moving" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfB-O1-f8E">
+                                <rect key="frame" x="116" y="139" width="88" height="62"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="Ra7-45-GqW"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="eSn-yk-C3B">
+                                <rect key="frame" x="86" y="253" width="148" height="177"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZrX-jc-USn">
+                                        <rect key="frame" x="0.0" y="0.0" width="148" height="81"/>
+                                        <color key="backgroundColor" red="0.5490196078431373" green="0.74117647058823533" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                        <inset key="contentEdgeInsets" minX="30" minY="15" maxX="30" maxY="15"/>
+                                        <state key="normal" title="Start">
+                                            <color key="titleColor" red="0.94901960784313721" green="0.94117647058823528" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="activateAlarm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4W4-qj-rik"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4D-sb-15P">
+                                        <rect key="frame" x="0.0" y="96" width="148" height="81"/>
+                                        <color key="backgroundColor" red="0.85882352941176465" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                        <inset key="contentEdgeInsets" minX="30" minY="15" maxX="30" maxY="15"/>
+                                        <state key="normal" title="Stop">
+                                            <color key="titleColor" red="0.94901960780000005" green="0.94117647059999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deactivateAlarm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VID-Qu-cRk"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="67Q-dp-q39" secondAttribute="trailing" id="1uD-mI-d9F"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eSn-yk-C3B" secondAttribute="trailing" constant="70" id="3Uz-Ui-gt7"/>
+                            <constraint firstItem="67Q-dp-q39" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="7TG-kZ-4Vk"/>
+                            <constraint firstItem="ax1-SR-8AQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="8Dn-mM-6xt"/>
+                            <constraint firstItem="67Q-dp-q39" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="F65-xa-d7I"/>
+                            <constraint firstItem="eSn-yk-C3B" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="70" id="N6M-lc-Kco"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ax1-SR-8AQ" secondAttribute="trailing" constant="36" id="TZb-d4-HNW"/>
+                            <constraint firstItem="yfB-O1-f8E" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ce8-ZW-F5f"/>
+                            <constraint firstAttribute="bottom" secondItem="67Q-dp-q39" secondAttribute="bottom" id="dEK-cN-1GG"/>
+                            <constraint firstItem="eSn-yk-C3B" firstAttribute="top" secondItem="yfB-O1-f8E" secondAttribute="bottom" constant="52" id="g2Y-JP-bMu"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="eSn-yk-C3B" secondAttribute="bottom" constant="50" id="kLn-XD-6Tm"/>
+                            <constraint firstItem="ax1-SR-8AQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="36" id="op7-wT-65F"/>
+                            <constraint firstItem="yfB-O1-f8E" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-70" id="rWL-Am-ErA"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="moving" destination="yfB-O1-f8E" id="615-cY-1ke"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="161" y="150"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="background" width="375" height="667"/>
+    </resources>
 </document>

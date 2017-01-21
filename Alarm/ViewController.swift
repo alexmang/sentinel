@@ -10,6 +10,8 @@ import UIKit
 import CoreMotion
 import AVFoundation
 import UserNotifications
+import MediaPlayer
+
 
 class ViewController: UIViewController {
 
@@ -22,16 +24,15 @@ class ViewController: UIViewController {
     var timer: Timer!
     var timer2: Timer!
     let manager = CMMotionManager()
-    //let systemSoundID: SystemSoundID = 1016
     
     var player: AVAudioPlayer?
+    let systemSoundID: SystemSoundID = 1016
+    let volumeView = MPVolumeView()
 
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
+        
     }
     
     
@@ -51,8 +52,15 @@ class ViewController: UIViewController {
         player?.stop()
 
 
-        timer2.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.update), userInfo: nil, repeats: true)
+//        timer2.invalidate()
+//        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.update), userInfo: nil, repeats: true)
+        
+        if timer != nil{
+            timer.invalidate()
+        }
+        if timer2 != nil{
+            timer2.invalidate()
+        }
     }
     
 
@@ -63,6 +71,8 @@ class ViewController: UIViewController {
             if (isDifferent(data: data)) {
                 moving.text = "Moving!!"
                 deactivated = false
+                
+                
                 
                 timer.invalidate()
                 timer2 = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.alarm), userInfo: nil, repeats: false)
@@ -134,6 +144,11 @@ class ViewController: UIViewController {
 //            catch {
 //                print("uh oh")
 //            }
+//            if let view = volumeView.subviews.first as? UISlider
+//            {
+//                view.value = 0.7   // set b/w 0 t0 1.0
+//            }
+//            AudioServicesPlayAlertSound (systemSoundID)
         }
     }
     
