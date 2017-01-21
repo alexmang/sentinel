@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreMotion
+import AVFoundation
 import UserNotifications
 
 class ViewController: UIViewController {
@@ -21,6 +22,8 @@ class ViewController: UIViewController {
     var timer: Timer!
     var timer2: Timer!
     let manager = CMMotionManager()
+    let systemSoundID: SystemSoundID = 1016
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +44,10 @@ class ViewController: UIViewController {
         deactivated = true
         
         manager.stopAccelerometerUpdates()
-        
-        timer = nil
+        moving.text = "Not Moving!"
+
+        timer.invalidate()
+        timer2.invalidate()
     }
     
 
@@ -53,9 +58,12 @@ class ViewController: UIViewController {
             if (isDifferent(data: data)) {
                 moving.text = "Moving!!"
                 deactivated = false
-                //timer2 = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(ViewController.alarm), userInfo: nil, repeats: true)
+                
+                timer.invalidate()
+                timer2 = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.alarm), userInfo: nil, repeats: true)
             } else {
                 moving.text = "Not Moving!"
+                
             }
             oldData = data
             print(accelerometerData.acceleration)
@@ -75,7 +83,7 @@ class ViewController: UIViewController {
 
     func alarm () {
         if !deactivated {
-            
+            AudioServicesPlayAlertSound (systemSoundID)
         }
     }
     
