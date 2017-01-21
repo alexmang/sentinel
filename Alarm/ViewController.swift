@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreMotion
+import UserNotifications
 
 class ViewController: UIViewController {
 
@@ -15,19 +16,35 @@ class ViewController: UIViewController {
     
     var oldData : CMAcceleration?
     
+    var deactivated : Bool!
+    
     var timer: Timer!
+    var timer2: Timer!
     let manager = CMMotionManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        
+
+    }
+    
+    
+    @IBAction func activateAlarm(_ sender: UIButton) {
         manager.startAccelerometerUpdates()
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.update), userInfo: nil, repeats: true)
-
     }
+    
+    
+    
+    @IBAction func deactivateAlarm(_ sender: UIButton) {
+        deactivated = true
+        
+        manager.stopAccelerometerUpdates()
+        
+        timer = nil
+    }
+    
 
     func update() {
         print("updating")
@@ -35,6 +52,8 @@ class ViewController: UIViewController {
             let data = accelerometerData.acceleration
             if (isDifferent(data: data)) {
                 moving.text = "Moving!!"
+                deactivated = false
+                //timer2 = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(ViewController.alarm), userInfo: nil, repeats: true)
             } else {
                 moving.text = "Not Moving!"
             }
@@ -54,6 +73,11 @@ class ViewController: UIViewController {
         return !(x_same && y_same && z_same)
     }
 
+    func alarm () {
+        if !deactivated {
+            
+        }
+    }
     
     
 }
