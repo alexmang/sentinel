@@ -22,7 +22,10 @@ class ViewController: UIViewController {
     var timer: Timer!
     var timer2: Timer!
     let manager = CMMotionManager()
-    let systemSoundID: SystemSoundID = 1016
+    //let systemSoundID: SystemSoundID = 1016
+    
+    var player: AVAudioPlayer?
+
 
     
     override func viewDidLoad() {
@@ -45,9 +48,11 @@ class ViewController: UIViewController {
         
         manager.stopAccelerometerUpdates()
         moving.text = "Not Moving!"
+        player?.stop()
 
-        timer.invalidate()
+
         timer2.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.update), userInfo: nil, repeats: true)
     }
     
 
@@ -60,7 +65,7 @@ class ViewController: UIViewController {
                 deactivated = false
                 
                 timer.invalidate()
-                timer2 = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.alarm), userInfo: nil, repeats: true)
+                timer2 = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.alarm), userInfo: nil, repeats: false)
             } else {
                 moving.text = "Not Moving!"
                 
@@ -83,9 +88,55 @@ class ViewController: UIViewController {
 
     func alarm () {
         if !deactivated {
-            AudioServicesPlayAlertSound (systemSoundID)
+            //AudioServicesPlayAlertSound (systemSoundID)
+            
+            //Prepare the sound file name & extension
+            
+            let url = Bundle.main.url(forResource: "alarm", withExtension: "wav")!
+            
+            do {
+                player = try AVAudioPlayer(contentsOf: url)
+                guard let player = player else {return}
+                
+                player.prepareToPlay()
+                player.play()
+            } catch let error {
+                print("oh no")
+            }
+            
+//            }
+//            let alertSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "alarm", ofType: "wav")!)
+//            
+//            //Preparation to play
+//            do {
+//                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+//            }
+//            catch {
+//                print("uh oh")
+//            }
+//            do {
+//                try AVAudioSession.sharedInstance().setActive(true)
+//            }
+//            catch {
+//                print("uh oh")
+//            }
+//            
+//            //Play audio
+//            do {
+//                print("here!")
+//                let audioPlayer = try AVAudioPlayer(contentsOf: alertSound as URL)
+//                print("going strong")
+//                var ready = audioPlayer.prepareToPlay()
+//                print(ready)
+//                ready = audioPlayer.play()
+//                print(ready)
+//            }
+//            catch {
+//                print("uh oh")
+//            }
         }
     }
+    
     
     
 }
