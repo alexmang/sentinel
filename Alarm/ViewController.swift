@@ -116,7 +116,7 @@ class ViewController: UIViewController {
             
 //            }
 //            let alertSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "alarm", ofType: "wav")!)
-//            
+//
 //            //Preparation to play
 //            do {
 //                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
